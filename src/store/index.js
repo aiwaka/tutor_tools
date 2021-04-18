@@ -23,6 +23,11 @@ export default new Vuex.Store({
     getNextTimeDataId(state) {
       return state.nextTimeDataId
     },
+    filteredTimeData(state) {
+      return state.timeData.filter(data => {
+        return data.date.month === state.month && data.date.year === state.year && data.client === state.currentClientId
+      })
+    },
     getClientData(state) {
       return state.clientData
     },
