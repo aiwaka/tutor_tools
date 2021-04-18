@@ -19,8 +19,8 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/timer',
-    name: 'timer',
+    path: '/watch',
+    name: 'watch',
     component: () => import('../views/TimeCounter.vue')
   },
   {
