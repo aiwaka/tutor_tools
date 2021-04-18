@@ -92,8 +92,7 @@ export default {
     methods: {
         startTimer() {
             // 本来はクライアントを選択していないときのアラートだがデバッグでは面倒なのでこのようにしておく
-            //if(this.$store.getters.getCurrentClientId < 0) {
-            if(this.$store.getters.getCurrentClientId > 0) {
+            if(this.$store.getters.getCurrentClientId < 0) {
                 alert('まずクライアントを一人選択してください.')
                 this.$router.push({name: 'clients'})
             }

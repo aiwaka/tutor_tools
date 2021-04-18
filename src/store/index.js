@@ -147,6 +147,9 @@ export default new Vuex.Store({
       state.clientData.splice(index, 1)
       const parsedData = JSON.stringify(state.clientData)
       localStorage.setItem('clientData', parsedData)
+      // 消した場合セットしていない状態に変更する.
+      state.currentClientId = -1
+      localStorage.setItem('currentClientId', JSON.stringify(state.currentClientId))
     },
     modifyClientData({state}, payload) {
       // payloadで更新内容をオブジェクトで受け取る. 含まれるidのものを探して更新する.
