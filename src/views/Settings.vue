@@ -1,8 +1,8 @@
 <template>
   <div class="settings">
     <div class="settings-mydata">
-      <BlockWithChanger :text="myData.name" v-on:text-changed="changeMyName" />
-      <BlockWithChanger :text="myData.email" :inputType="'email'" v-on:text-changed="changeMyEmail" />
+      <BlockWithChanger :label="'ユーザー名'" :text="myData.name" v-on:text-changed="changeMyName" />
+      <BlockWithChanger :label="'メールアドレス'" :text="myData.email" :inputType="'email'" v-on:text-changed="changeMyEmail" />
     </div>
     <!--
     <form>
@@ -68,6 +68,9 @@ export default {
   display: flex;
   justify-content: center;
   margin: 3rem auto;
+}
+.settings-mydata > div {
+  margin: 0 4rem;
 }
 label {
   display: inline-block;
