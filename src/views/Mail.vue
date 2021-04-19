@@ -40,11 +40,13 @@ export default {
     if (!myData.name || !myData.email) {
       alert('メールを利用するにはユーザー設定を行なってください。')
       this.$router.push('/settings')
+      return
     }
     const clientData = this.$store.getters.getCurrentClientData
     if (!clientData) {
       alert('クライアントを一人選択してください。')
       this.$router.push('/clients')
+      return
     }
     this.newSubject = this.subject
     this.newBody = this.body
