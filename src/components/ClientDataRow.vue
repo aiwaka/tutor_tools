@@ -1,14 +1,16 @@
 <template>
   <!--clientデータを表示する行. それぞれのデータはBlockWithChangerを使って変更可能なようにする.-->
   <div class="client-data-row">
+    <div class="set-button">
+      <button :disabled="currentClientId === dataId" v-on:click.prevent="setCurrentClient">Set</button>
+    </div>
+
     <BlockWithChanger class="content-name" :text="clientData.name" v-on:text-changed="changeName"/>
     <BlockWithChanger class="content-email" :text="clientData.email" v-on:text-changed="changeEmail"/>
     <BlockWithChanger class="content-pay" :text="clientData.pay" :inputType="'number'" v-on:text-changed="changePay"/>
     <BlockWithChanger class="content-schedule" :text="clientData.schedule" v-on:text-changed="changeSchedule"/>
     <BlockWithChanger class="content-memo" :text="clientData.memo" v-on:text-changed="changeMemo"/>
-    <div class="set-button">
-      <button :disabled="currentClientId === dataId" v-on:click.prevent="setCurrentClient">Set</button>
-    </div>
+
     <div class="eraser" v-on:click.prevent="clickDeleteButton">×</div>
   </div>
 </template>
