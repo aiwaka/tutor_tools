@@ -12,6 +12,7 @@ export default new Vuex.Store({
     nextClientId: 0,
     year: 2021,
     month: 1,
+    myData: null,
   },
   getters: {
     getYear(state) {
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     getCurrentClientData(state) {
       const index = state.clientData.findIndex((data) => data.id === state.currentClientId)
       return state.clientData[index]
+    },
+    getMyData(state) {
+      return state.myData
     }
   },
   mutations: {
@@ -166,6 +170,25 @@ export default new Vuex.Store({
     setCurrentClient({state}, {id}) {
       state.currentClientId = id
       localStorage.setItem('currentClientId', JSON.stringify(state.currentClientId))
+    },
+    /* 自分のデータ */
+    loadMyData({state}) {
+      const myData = localStorage.getItem('myData')
+      if (myData) {
+        state.myData = JSON.parse(myData)
+      } else {
+        Object.assign(state.myData, {
+          name: null,
+          email: null,
+        })
+      }
+    },
+    modifyMyData({state}, payload) {
+      // payloadで更新内容をオブジェクトで受け取る. 含まれるidのものを探して更新する.
+      Object.assign(state.myData, payload)
+      // ストレージにセーブ
+      const parsedData = JSON.stringify(state.myData)
+      localStorage.setItem('myData', parsedData)
     },
 
     /* その他 */
