@@ -63,7 +63,7 @@ export default new Vuex.Store({
       if (monthData) {
         state.month = JSON.parse(monthData)
       } else {
-        state.month = nowdate.getMonth()
+        state.month = nowdate.getMonth() + 1
       }
       const yearData = localStorage.getItem('year')
       if (yearData) {
