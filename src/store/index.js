@@ -183,7 +183,7 @@ export default new Vuex.Store({
         })
       }
     },
-    modifyMyData({state}, payload) {
+    saveMyData({state}, payload) {
       // payloadで更新内容をオブジェクトで受け取る. 含まれるidのものを探して更新する.
       Object.assign(state.myData, payload)
       // ストレージにセーブ
