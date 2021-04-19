@@ -12,7 +12,7 @@ export default new Vuex.Store({
     nextClientId: 0,
     year: 2021,
     month: 1,
-    myData: null,
+    myData: {},
   },
   getters: {
     getYear(state) {
@@ -178,8 +178,8 @@ export default new Vuex.Store({
         state.myData = JSON.parse(myData)
       } else {
         Object.assign(state.myData, {
-          name: null,
-          email: null,
+          name: '',
+          email: '',
         })
       }
     },
@@ -208,6 +208,7 @@ export default new Vuex.Store({
       await dispatch('loadDate')
       await dispatch('loadTimeData')
       await dispatch('loadClientData')
+      await dispatch('loadMyData')
     },
   },
   modules: {
