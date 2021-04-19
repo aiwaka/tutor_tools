@@ -54,7 +54,7 @@ export default {
             this.show = true
         },
         textClick() {
-            alert(this.viewText)
+            alert(this.text)
         }
     }
 }
