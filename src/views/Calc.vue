@@ -85,6 +85,40 @@ export default {
         this.$store.dispatch('deleteTimeDataById', {id})
       }
     },
+    goToMailPage() {
+      const lineFeed = '\r\n'
+      const clientName = this.$store.getters.getCurrentClientData.name
+      let body = [
+        clientName + '様',
+        'いつもお世話になっております。',
+        '今月のお支払いは' + String(this.monthPayment) + '円です。',
+        '明細は以下になります。',
+        '------------------------------------',
+      ]
+      for (const data of this.filteredData) {
+        let detailed = String(data.date.day) + '日（' + String(data.date.weekday) + '）：'
+        const sec = Math.trunc(data.time / 1000)
+        const hours = Math.trunc(sec / 3600)
+        const minutes = Math.trunc((sec % 3600) / 60)
+        const seconds = sec % 60
+        detailed += String(hours) + '時間' + String(minutes) + '分' + String(seconds) + '秒'
+        body.push(detailed)
+      }
+      body = body.concat([
+        '',
+        '総額',
+        String(this.timeSum.hours) + '時間' + String(this.timeSum.minutes) + '分' + String(this.timeSum.seconds) + '秒' + ' × ' + String(this.payPerHour) + '円/時間' + ' = ' + String(this.monthPayment) + '円',
+        '------------------------------------',
+        'よろしくお願いいたします。'
+      ])
+      this.$router.push({
+        name: 'mail',
+        params: {
+          subject: String(this.year) + '年' + String(this.month) + '月分',
+          body: body.join(lineFeed)
+        }
+      })
+    }
   }
 }
 </script>
