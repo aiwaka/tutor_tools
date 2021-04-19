@@ -42,4 +42,24 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+button {
+    border-radius: 4rem;
+    background-color: #fff;
+    border: 2px solid #777;
+}
+button:hover {
+    background-color: #ddd;
+}
+button[disabled]:hover {
+  background-color: #fff;
+}
+button:active {
+    background-color: #000;
+    color: #fff;
+}
+button[disabled]:active {
+  background-color: #fff;
+  color: inherit;
+}
 </style>

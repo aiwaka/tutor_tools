@@ -3,9 +3,9 @@
     <div class="block-with-changer">
         <div class="label" v-if="label">{{label}}</div>
         <div class="text-space" v-if="show">{{text}}</div>
-        <button v-if="show" v-on:click.prevent="change">Change</button>
+        <button v-if="show" v-on:click.prevent="change">変更</button>
         <input class="text-input" :type="inputType" v-if="!show" v-model="newText" />
-        <button v-if="!show" v-on:click.prevent="save">Save</button>
+        <button v-if="!show" v-on:click.prevent="save">保存</button>
     </div>
 </template>
 

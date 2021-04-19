@@ -76,4 +76,7 @@ label {
   display: inline-block;
   margin-right: .5rem;
 }
+#clear-data:hover {
+  background-color: #c88;
+}
 </style>
