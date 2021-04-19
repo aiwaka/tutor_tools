@@ -23,7 +23,7 @@
             </div>
         </div>
         <button class="saving" v-if="!counting && status" v-on:click.prevent="saveTime">保存</button>
-
+        <!--
         <form>
             <input type="number" placeholder="year" v-model="devYear"/>
             <input type="number" placeholder="month" v-model="devMonth"/>
@@ -31,6 +31,7 @@
             <input type="number" placeholder="milisec" v-model="devMiliSec"/>
             <button v-on:click.prevent="devSaveTime">save</button>
         </form>
+        -->
     </div>
 </template>
 
@@ -171,3 +172,31 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.operations-list {
+    width: 15em;
+    height: auto;
+    margin: auto;
+}
+.operations-item {
+    border: 1px solid #888;
+    border-top-width: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 15em;
+}
+.operations-item:first-child {
+    border-top: 1px solid #888;
+}
+.operations-item-id {
+    justify-self: flex-start;
+    width: 3em;
+}
+.operations-item-operation {
+    width: 3em;
+}
+.saving:hover {
+    background-color: #c88;
+}
+</style>
