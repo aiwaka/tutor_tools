@@ -2,7 +2,8 @@
     <!--textを受け取り表示する. changeボタンを押すと編集でき, saveを押すとtext-changedをemitし変更後のデータを返す. オプションでinputTypeを指定するとテキストのバリデーションを設定できる.-->
     <div class="block-with-changer">
         <div class="label" v-if="label">{{label}}</div>
-        <div class="text-space" v-if="show">{{text}}</div>
+        <div class="text-space" v-if="show && !foldFlag" v-on:click="textClick">{{text}}</div>
+        <div class="text-space" v-if="show && foldFlag" v-on:click="textClick">{{viewText}}</div>
         <button v-if="show" v-on:click.prevent="change">変更</button>
         <input class="text-input" :type="inputType" v-if="!show" v-model="newText" />
         <button v-if="!show" v-on:click.prevent="save">保存</button>
@@ -15,7 +16,7 @@ export default {
     data: () => {
         return {
             show: true,
-            newText: ''
+            newText: '',
         }
     },
     props: {
@@ -29,6 +30,18 @@ export default {
         inputType: {
             type: String,
             default: 'text',
+        },
+    },
+    computed: {
+        foldFlag() {
+            return this.text.length > 25
+        },
+        viewText() {
+            if (this.foldFlag) {
+                return this.text.slice(0, 25) + '...'
+            } else {
+                return ''
+            }
         }
     },
     methods: {
@@ -39,6 +52,9 @@ export default {
         save() {
             this.$emit('text-changed', this.newText)
             this.show = true
+        },
+        textClick() {
+            alert(this.viewText)
         }
     }
 }
