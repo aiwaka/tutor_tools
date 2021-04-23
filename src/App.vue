@@ -8,7 +8,12 @@
       <router-link to="/mail">Mail</router-link> |
       <router-link to="/settings">Settings</router-link>
     </div>
-    <router-view/>
+    <div id="container">
+      <router-view/>
+      <footer>
+        <span>&copy; 2021 Aiwaka</span>
+      </footer>
+    </div>
   </div>
 </template>
 
@@ -61,5 +66,15 @@ button:active {
 button[disabled]:active {
   background-color: #fff;
   color: inherit;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  margin-top: auto;
+  width: 100%;
+  height: 5rem;
 }
 </style>
