@@ -4,6 +4,8 @@
         <div class="label" v-if="label">{{label}}</div>
         <div class="text-space" v-if="show && !foldFlag" v-on:click="textClick">{{text}}</div>
         <div class="text-space" v-if="show && foldFlag" v-on:click="textClick">{{viewText}}</div>
+
+
         <button v-if="show" v-on:click.prevent="change">変更</button>
         <input class="text-input" :type="inputType" v-if="!show" v-model="newText" />
         <button v-if="!show" v-on:click.prevent="save">保存</button>
@@ -34,13 +36,13 @@ export default {
     },
     computed: {
         foldFlag() {
-            return this.text.length > 25
+            return this.text.length > 17
         },
         viewText() {
             if (this.foldFlag) {
-                return this.text.slice(0, 25) + '...'
+                return this.text.slice(0, 17) + '...'
             } else {
-                return ''
+                return 'folded'
             }
         }
     },
@@ -69,7 +71,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 10rem;
+    height: 11rem;
 }
 .text-space {
     width: 10rem;
