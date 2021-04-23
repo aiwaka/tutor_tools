@@ -4,8 +4,11 @@
         <div class="label" v-if="label">{{label}}</div>
         <div class="text-space" v-if="show && !foldFlag" v-on:click="textClick">{{text}}</div>
         <div class="text-space" v-if="show && foldFlag" v-on:click="textClick">{{viewText}}</div>
-
-
+        <div class="whole-text-container">
+            <div class="whole-text" v-if="showWholeText">
+                <p>{{text}}</p>
+            </div>
+        </div>
         <button v-if="show" v-on:click.prevent="change">変更</button>
         <input class="text-input" :type="inputType" v-if="!show" v-model="newText" />
         <button v-if="!show" v-on:click.prevent="save">保存</button>
@@ -18,6 +21,7 @@ export default {
     data: () => {
         return {
             show: true,
+            showWholeText: false,
             newText: '',
         }
     },
@@ -56,7 +60,8 @@ export default {
             this.show = true
         },
         textClick() {
-            alert(this.text)
+            //alert(this.text)
+            this.showWholeText = !this.showWholeText
         }
     }
 }
@@ -84,5 +89,32 @@ export default {
 }
 button {
     margin: .4rem 0;
+}
+.whole-text-container {
+    position: relative;
+}
+.whole-text {
+  position: absolute;
+  top: 1rem;
+  left: -8rem;
+
+  padding: .6rem 1rem;
+  width: 16rem;
+  word-wrap: break-word;
+  color: inherit;
+  background: #babb9d;
+}
+.whole-text:before {
+  content: "";
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-bottom: 15px solid #babb9d;
+}
+.whole-text p {
+  margin: 0;
+  padding: 0;
 }
 </style>
