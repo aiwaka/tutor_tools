@@ -5,7 +5,7 @@
       <router-link to="/clients">Clients</router-link> |
       <router-link to="/watch">Watch</router-link> |
       <router-link to="/calc">Calculation</router-link> |
-      <router-link to="/mail">Mail</router-link> |
+      <!--<router-link to="/mail">Mail</router-link> |-->
       <router-link to="/settings">Settings</router-link>
     </div>
     <div id="container">

@@ -13,7 +13,7 @@
       <h3>総額</h3>
       <div>{{timeSum.hours}}時間{{timeSum.minutes}}分{{timeSum.seconds}}秒 * {{ payPerHour }}円/時</div>
       <div>今月の支払いは{{ monthPayment }}円です。</div>
-      <button v-on:click.prevent="goToMailPage">メールを送信する</button>
+      <!--<button v-on:click.prevent="goToMailPage">メールを送信する</button>-->
     </div>
   </div>
 </template>
@@ -85,6 +85,7 @@ export default {
         this.$store.dispatch('deleteTimeDataById', {id})
       }
     },
+    /*
     goToMailPage() {
       const lineFeed = '\r\n'
       const clientName = this.$store.getters.getCurrentClientData.name
@@ -119,6 +120,7 @@ export default {
         }
       })
     }
+    */
   }
 }
 </script>

@@ -20,12 +20,14 @@ const routes = [
     name: 'calc',
     component: () => import('../views/Calc.vue')
   },
+  /*
   {
     path: '/mail',
     name: 'mail',
     props: true,
     component: () => import('../views/Mail.vue')
   },
+  */
   {
     path: '/clients',
     name: 'clients',
