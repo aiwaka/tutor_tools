@@ -9,7 +9,10 @@
                 <p>{{text}}</p>
             </div>
         </div>
-        <button v-if="show" v-on:click.prevent="change">変更</button>
+        <div class="button-container">
+            <button v-if="show" v-on:click.prevent="change">変更</button>
+            <button v-if="show" v-on:click.prevent="copyToClipBoard(text)">コピー</button>
+        </div>
         <input class="text-input" :type="inputType" v-if="!show" v-model="newText" />
         <button v-if="!show" v-on:click.prevent="save">保存</button>
     </div>
@@ -62,6 +65,13 @@ export default {
         textClick() {
             //alert(this.text)
             this.showWholeText = !this.showWholeText
+        },
+        copyToClipBoard(text) {
+            navigator.clipboard
+            .writeText(text)
+            .catch((e) => {
+                console.error(e)
+            })
         }
     }
 }
@@ -77,6 +87,11 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 11rem;
+}
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .text-space {
     width: 10rem;
