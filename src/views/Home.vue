@@ -39,7 +39,7 @@ h1 {
   font-size: 6rem;
 }
 p {
-  margin: .4rem 10%;
+  margin: .4rem inherit;
 }
 ul {
   list-style-type: none;
