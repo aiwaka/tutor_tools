@@ -63,13 +63,12 @@ export default {
             this.show = true
         },
         textClick() {
-            //alert(this.text)
             this.showWholeText = !this.showWholeText
         },
         copyToClipBoard(text) {
             navigator.clipboard
             .writeText(text)
-            .catch((e) => {
+            .catch( e => {
                 console.error(e)
             })
         }
@@ -103,7 +102,8 @@ export default {
     margin: auto;
 }
 button {
-    margin: .4rem 0;
+    margin: .4rem .3rem;
+    font-size: 0.9rem;
 }
 .whole-text-container {
     position: relative;
