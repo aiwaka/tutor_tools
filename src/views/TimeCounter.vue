@@ -23,15 +23,22 @@
             </div>
         </div>
         <button class="saving" v-if="!counting && status" v-on:click.prevent="saveTime">保存</button>
-        <!--
-        <form>
-            <input type="number" placeholder="year" v-model="devYear"/>
-            <input type="number" placeholder="month" v-model="devMonth"/>
-            <input type="number" placeholder="day" v-model="devDay"/>
-            <input type="number" placeholder="milisec" v-model="devMiliSec"/>
-            <button v-on:click.prevent="devSaveTime">save</button>
-        </form>
-        -->
+        <h2>手動で追加する</h2>
+        <p>手動で時間データを保存する場合は、次の＋ボタンをクリックして開くフォームに入力してください。</p>
+        <div class="addForm">
+            <div class="addFormSwitch" v-on:click.prevent="showAddForm=!showAddForm">{{showAddForm ? '-' : '+'}}</div>
+            <form class="addFormBody" v-if="showAddForm">
+                <label for="data-year" required>年</label>
+                <input id="data-year" type="number" placeholder="year" v-model="manualYear"/><br/>
+                <label for="data-month" required>月</label>
+                <input id="data-month" type="number" placeholder="month" v-model="manualMonth"/><br/>
+                <label for="data-day" required>日</label>
+                <input id="data-day" type="number" placeholder="day" v-model="manualDay"/><br/>
+                <label for="data-sec" required>秒</label>
+                <input id="data-sec" type="number" placeholder="second" v-model="manualSec"/><br/>
+                <button v-on:click.prevent="manualSaveTime">save</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -48,11 +55,13 @@ export default {
             operations: [], // ストップウォッチの操作を保存する配列
             operationsId: 1,
 
+            showAddForm: false, // 手動追加フォームを表示するフラグ
+
             // 開発用のテスト変数
-            devYear: 2021,
-            devMonth: 4,
-            devDay: 3,
-            devMiliSec: 3600000,
+            manualYear: null,
+            manualMonth: null,
+            manualDay: null,
+            manualSec: null,
         }
     },
     computed: {
@@ -158,15 +167,17 @@ export default {
             this.$set(this, "operations", []) // 直接operations = [] とするとVueは検知してくれない
             this.operationsId = 1
         },
-        devSaveTime() {
+        manualSaveTime() {
+            const date = new Date(this.manualYear, this.manualMonth - 1, this.manualDay)
+            const weekdayArray = ['日','月','火','水','木','金','土']
             this.$store.dispatch('saveTimeData', {
                 date: {
-                    year: parseInt(this.devYear),
-                    month: parseInt(this.devMonth),
-                    day: parseInt(this.devDay),
-                    weekday: '月'
+                    year: parseInt(this.manualYear),
+                    month: parseInt(this.manualMonth),
+                    day: parseInt(this.manualDay),
+                    weekday: weekdayArray[date.getDay()]
                 },
-                time: parseInt(this.devMiliSec)
+                time: parseInt(this.manualSec*1000)
             })
         },
     }
@@ -198,5 +209,27 @@ export default {
 }
 .saving:hover {
     background-color: #c88;
+}
+div.addFormSwitch {
+  width: 2rem;
+  font-size: 2rem;
+  padding: 0;
+  margin: 0 .8rem;
+}
+div.addFormSwitch:hover {
+  cursor: pointer;
+}
+.addFormBody {
+    border: 3px dotted #aaa;
+    margin: 2em 1%;
+}
+form > input {
+    width: 10em;
+    margin: 2px 3px;
+}
+form > label {
+    display: inline-block;
+    width: 10em;
+    margin: 2px 3px;
 }
 </style>
